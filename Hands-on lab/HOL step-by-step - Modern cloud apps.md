@@ -1294,7 +1294,7 @@ When you authenticate users by using OpenID Connect, Azure AD returns an ID toke
     [Authorize]
     public ActionResult Claims()
     {
-        Claim displayName = ClaimsPrincipal.Current.FindFirst(ClaimsPrincipal.Current.Identities.First().NameClaimType);
+        Claim displayName = User.FindFirst(User.Identities.First().NameClaimType);
         ViewBag.DisplayName = displayName != null ? displayName.Value : string.Empty;
         return View();
     }
@@ -1321,7 +1321,7 @@ When you authenticate users by using OpenID Connect, Azure AD returns an ID toke
             <th class="claim-data claim-head">Claim Value</th>
         </tr>
 
-        @foreach (Claim claim in ClaimsPrincipal.Current.Claims)
+        @foreach (Claim claim in User.Claims)
         {
             <tr>
                 <td class="claim-type claim-data">@claim.Type</td>
