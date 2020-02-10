@@ -1249,8 +1249,9 @@ Your app is now properly configured to communicate with Azure AD B2C by using AS
         {
             // To execute a policy, you simply need to trigger an OWIN challenge.
             // You can indicate which policy to use by specifying the policy id as the AuthenticationType
-            await HttpContext.ChallengeAsync(SignUpSignInPolicyId,
-                new AuthenticationProperties() { RedirectUri = "/" });
+            var properties = new AuthenticationProperties() { RedirectUri = "/" };
+            properties.Items[AzureADB2CDefaults.PolicyKey] = SignUpSignInPolicyId;
+            await HttpContext.ChallengeAsync(AzureADB2CDefaults.AuthenticationScheme, properties);
         }
     }
 
@@ -1258,8 +1259,9 @@ Your app is now properly configured to communicate with Azure AD B2C by using AS
     {
         if (!User.Identity.IsAuthenticated)
         {
-            await HttpContext.ChallengeAsync(SignUpSignInPolicyId,
-                new AuthenticationProperties() { RedirectUri = "/" });
+            var properties = new AuthenticationProperties() { RedirectUri = "/" };
+            properties.Items[AzureADB2CDefaults.PolicyKey] = SignUpSignInPolicyId;
+            await HttpContext.ChallengeAsync(AzureADB2CDefaults.AuthenticationScheme, properties);
         }
     }
 
@@ -1268,8 +1270,9 @@ Your app is now properly configured to communicate with Azure AD B2C by using AS
     {
         if (User.Identity.IsAuthenticated)
         {
-            await HttpContext.ChallengeAsync(EditProfilePolicyId,
-                new AuthenticationProperties() { RedirectUri = "/" });
+            var properties = new AuthenticationProperties() { RedirectUri = "/" };
+            properties.Items[AzureADB2CDefaults.PolicyKey] = EditProfilePolicyId;
+            await HttpContext.ChallengeAsync(AzureADB2CDefaults.AuthenticationScheme, properties);
         }
     }
 
