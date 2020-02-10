@@ -1171,13 +1171,20 @@ To enable profile editing on your application, you will need to create a profile
 
 ### Task 5: Modify the Contoso.App.SportsLeague.Web
 
-1. Expand the **Contoso.Apps.SportsLeague.Web** project. Find the **Startup.cs** code file, locate the `public void Configure(` method declaration, then add the following line of code to this method:
+1. Expand the **Contoso.Apps.SportsLeague.Web** project. Find the **Startup.cs** code file:
+
+    - Locate the `public void ConfigureServices(` method declaration, then add the following lines of code to the end of this method:
 
     ```csharp
-    app.UseAuthorization();
+    services.AddAuthentication(AzureADB2CDefaults.AuthenticationScheme)
+      .AddAzureADB2C(options => Configuration.Bind("AzureADB2C", options));
     ```
 
-    ![The Startup.cs file with the "app.UseAuthorization();" line of code highlighted.](media/2019-04-19-15-08-40.png "Startup.cs")
+    - Locate the `public void Configure(` method declaration, then add the following line of code to this method between `app.UseSession();` and `app.UseRouting();`:
+
+    ```csharp
+    app.UseAuthentication();
+    ```
 
 2. Locate the Azure AD B2C name by navigating to your resource group. Copy the name to Notepad.
 
