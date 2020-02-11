@@ -1039,7 +1039,7 @@ In this exercise, you will configure an Azure AD Business to Consumer (B2C) inst
 
    - Allow Implicit Flow: **Yes**
 
-   - Reply URL: `https://[your web url].azurewebsites.net` _(This should be the HTTPS URL to the Contoso E-Commerce Site.)_
+   - Reply URL: `https://[your web url].azurewebsites.net/signin-oidc-b2c` _(This should be the HTTPS URL to the Contoso E-Commerce Site.)_
 
    ![The New application fields are set to the previously defined values.](images/Hands-onlabstep-by-step-Moderncloudappsimages/media/image161.png "New application")
 
@@ -1194,7 +1194,7 @@ To enable profile editing on your application, you will need to create a profile
 
 4. Add the following settings in the **Application Settings** section:
 
-   - AzureADB2C:Instance - `https://login.microsoftonline.com/tfp/`.
+   - AzureADB2C:Instance - **https://[your Azure AD B2C name].b2clogin.com**.
    - AzureADB2C:ClientId - **B2C Application ID you copied down earlier**.
    - AzureADB2C:CallbackPath - `/signin-oidc-b2c`.
    - AzureADB2C:Domain - **[your Azure AD B2C name].onmicrosoft.com**.
