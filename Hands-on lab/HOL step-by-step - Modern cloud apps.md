@@ -1173,6 +1173,13 @@ To enable profile editing on your application, you will need to create a profile
 
 1. Expand the **Contoso.Apps.SportsLeague.Web** project. Find the **Startup.cs** code file:
 
+    - Add the following using statements to the top of the class:
+    
+    ```csharp
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
+    ```
+
     - Locate the `public void ConfigureServices(` method declaration, then add the following lines of code to the end of this method:
 
     ```csharp
